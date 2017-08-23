@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using SlackConnector;
@@ -8,6 +9,7 @@ using SlackConnector.Models;
 using Slacker.Contracts;
 using Slacker.Database;
 using Slacker.ObjectModel;
+using Slacker.Triggers;
 using Slacker.Triggers.Talk;
 
 namespace Slacker
@@ -15,8 +17,8 @@ namespace Slacker
     public sealed class SlackerBot : IBot
     {
         private readonly ISlackConnection _connection;
-        private readonly IDictionary<string, Func<ISlackConnection, SlackChatHub, SlackerContext, Task>> _triggers =
-            new Dictionary<string, Func<ISlackConnection, SlackChatHub, SlackerContext, Task>>();
+        private readonly IDictionary<string, Func<ITriggerArguments, ISlackConnection, SlackChatHub, SlackerContext, Task>> _triggers =
+            new Dictionary<string, Func<ITriggerArguments, ISlackConnection, SlackChatHub, SlackerContext, Task>>();
 
         public SlackerBot(ISlackConnection connection)
         {
@@ -37,12 +39,19 @@ namespace Slacker
             {
                 var split = message.Text.Split(new[] {' '});
                 var command = split[0];
+
+                ITriggerArguments arguments = null;
+
+                if (split.Length > 1)
+                {
+                    arguments = new TriggerArguments(split.Skip(1).Take(split.Length - 1).ToArray());
+                }
                 
                 if (_triggers.Keys.Contains(command))
                 {
                     using (var context = new SlackerDbContextFactory().CreateDbContext(null))
                     {
-                        await _triggers[command](_connection, message.ChatHub, context);
+                        await _triggers[command](arguments, _connection, message.ChatHub, context);
                     }
                 }
             }

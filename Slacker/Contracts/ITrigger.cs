@@ -10,6 +10,6 @@ namespace Slacker.Contracts
     {
         string Name { get; }
 
-        Task Execute(ISlackConnection connection, SlackChatHub chatHub, SlackerContext context);
+        Task Execute(ITriggerArguments arguments, ISlackConnection connection, SlackChatHub chatHub, SlackerContext context);
     }
 }

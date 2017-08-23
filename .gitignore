@@ -259,5 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-Slacker.Database/connectionString.json
+Slacker/connectionString.json
 Slacker/botconfiguration.json

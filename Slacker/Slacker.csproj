@@ -9,8 +9,4 @@
     <PackageReference Include="slackconnector" Version="4.1.13" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
-
 </Project>

@@ -17,7 +17,7 @@ namespace Slacker.Database
 
             if (!File.Exists(ConnectionStringFileName))
             {
-                throw new FileNotFoundException($"Could not find the {ConnectionStringFileName}. Ensure that the exmaple file is renamed and populated with your connection string.");
+                throw new FileNotFoundException($"Could not find the {ConnectionStringFileName}. Ensure that the example file is renamed and populated with your connection string.");
             }
 
             using (var streamReader = new StreamReader(ConnectionStringFileName))

@@ -57,6 +57,11 @@ namespace Slacker
             }
             else
             {
+                if (message.User.IsBot)
+                {
+                    return;
+                }
+
                 // ReSharper disable once AssignNullToNotNullAttribute
                 using (var context = new SlackerDbContextFactory().CreateDbContext(null))
                 {

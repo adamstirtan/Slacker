@@ -1,0 +1,3 @@
+﻿{
+  "ConnectionString": "Server=tcp:slacker.database.windows.net,1433;Initial Catalog=slacker;Persist Security Info=False;User ID=slackeradmin;Password=0j@@83$tiRt;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+}

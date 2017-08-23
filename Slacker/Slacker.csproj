@@ -9,4 +9,8 @@
     <PackageReference Include="slackconnector" Version="4.1.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Slacker.Database\Slacker.Database.csproj" />
+  </ItemGroup>
+
 </Project>

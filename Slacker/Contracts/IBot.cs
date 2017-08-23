@@ -6,10 +6,12 @@ namespace Slacker.Contracts
 {
     public interface IBot
     {
-        IBotConfiguration GetBotConfiguration(string fileName = "");
-
         Task OnMessageReceived(SlackMessage message);
 
+        Task OnUserJoined(SlackUser user);
+
         void OnDisconnected();
+
+        Task OnReconnect();
     }
 }

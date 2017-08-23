@@ -2,7 +2,7 @@
 
 namespace Slacker.Configuration
 {
-    public class JsonBotConfiguration : IBotConfiguration
+    public class BotConfiguration : IBotConfiguration
     {
         public string SlackToken { get; set; }
     }

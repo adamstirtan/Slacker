@@ -34,7 +34,7 @@ namespace Slacker.Triggers.Talk
                 connection.Say(new BotMessage
                 {
                     ChatHub = chatHub,
-                    Text = $"There isn't enough messages by {arguments.Arguments[0]} to go on"
+                    Text = $"There aren't enough messages by {arguments.Arguments[0]} to go on"
                 });
 
                 return Task.CompletedTask;

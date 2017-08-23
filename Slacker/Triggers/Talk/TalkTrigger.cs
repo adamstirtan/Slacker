@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+
+using Markov;
 
 using SlackConnector;
 using SlackConnector.Models;
@@ -40,14 +43,17 @@ namespace Slacker.Triggers.Talk
                 return Task.CompletedTask;
             }
 
-            var markovChain = new MarkovChain<string>(" ");
-            markovChain.Train(messages.Select(x => x.Content).ToList(), 4);
-            var generated = markovChain.Generate(1, false);
+            var chain = new MarkovChain<string>(1);
+
+            foreach (var message in messages)
+            {
+                chain.Add(message.Content.Split(new[] { ' ' }), 1);
+            }
 
             connection.Say(new BotMessage
             {
                 ChatHub = chatHub,
-                Text = $"@{arguments.Arguments[0]}: {generated[0]}"
+                Text = string.Join(" ", chain.Chain(new Random(DateTime.UtcNow.Millisecond)))
             });
 
             return Task.CompletedTask;

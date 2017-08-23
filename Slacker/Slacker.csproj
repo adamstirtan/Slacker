@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markov" Version="1.2.1" />
     <PackageReference Include="slackconnector" Version="4.1.13" />
   </ItemGroup>
 
